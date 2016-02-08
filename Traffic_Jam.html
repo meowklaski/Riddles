@@ -223,7 +223,10 @@ N(N-1)(n_{N} - n_{N-1})  = Nn_{N-1} - (Nn_{N} - N)
 \end{equation*}<p>Solving for $n_{N}$:</p>
 \begin{equation*}
 n_{N}  = \frac{1}{N} + n_{N-1}
-\end{equation*}<p>Thus we arrive at a recursive relation for the expected number of groups to form amongst $N$ cars.</p>
+\end{equation*}<p>Thus we find that $n_{N}$ is given by the harmonic series:</p>
+\begin{equation*}
+n_{N}  = \sum_{k=1}^{N}\frac{1}{k}
+\end{equation*}<p>Thus we arrive at a closed sum relation for the expected number of groups to form amongst $N$ cars.</p>
 <h3 id="Interesting-Notes">Interesting Notes<a class="anchor-link" href="#Interesting-Notes">&#182;</a></h3><ul>
 <li>$n_{N} \sim \sum_{k=0}^{N}\frac{1}{k} \sim γ+ln(N), (N\rightarrow\infty)$<br>
 ($γ ≈ 0.5772156649$)</li>
@@ -323,10 +326,11 @@ n_{N}  = \frac{1}{N} + n_{N-1}
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">num_groups_list</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">num_groups_list2</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">N</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">num_groups_list</span><span class="p">(</span><span class="n">N</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
 </pre></div>
 
 </div>
@@ -337,7 +341,7 @@ n_{N}  = \frac{1}{N} + n_{N-1}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[54]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
